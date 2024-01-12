@@ -6,7 +6,7 @@ use PHPMailer\PHPMailer\SMTP;
 require('./vendor/autoload.php');
 require 'mailingvariables.php';
 
-function mailfunction($mail_reciever_email, $mail_reciever_name, $mail_msg, $attachment = false){
+function mailfunction($mail_reciever_email, $mail_reciever_name, $mail_msg, $attachments = []){
 
     $mail = new PHPMailer();
     $mail->isSMTP();
@@ -35,15 +35,15 @@ function mailfunction($mail_reciever_email, $mail_reciever_name, $mail_msg, $att
 
     $mail->msgHTML($mail_msg);
 
-
-    if($attachment !== false){
-        $mail->AddAttachment($attachment);
+    foreach ($attachments as $attachment) {
+        $mail->addAttachment($attachment);
     }
     
     $mail->AltBody = 'This is a plain-text message body';
  
     if (!$mail->send()) {
-        return false;
+        // Log the error or return it for handling
+        return $mail->ErrorInfo;
     } else {
         return true;
     }
