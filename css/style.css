@@ -335,14 +335,20 @@ body{
     background-attachment: fixed;
     background-repeat: no-repeat;
 	color: #fff;
-	padding: 40px 20px;
+	padding: 50px 30px;
+	display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .counters .container {
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
-	grid-gap: 30px;
+	grid-gap: 50px;
 	text-align: center;
+	display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .counters i {
